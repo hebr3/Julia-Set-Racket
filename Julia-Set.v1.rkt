@@ -6,7 +6,7 @@
 (define WIDTH 400)
 (define HEIGHT WIDTH)
 (define DEPTH 64)
-(define SCALE (expt 0.5 (- (/ (log WIDTH) (log 0.5)))))
+(define SCALE (/ WIDTH))
 
 ;; PROCEDURES
 (: julia (-> Float-Complex Float-Complex Natural))
