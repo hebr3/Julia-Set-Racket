@@ -7,7 +7,6 @@
 (define HEIGHT WIDTH)
 (define DEPTH 64)
 (define SCALE (expt 0.5 (- (/ (log WIDTH) (log 0.5)))))
-(define TEST-POINT -0.8+0.156i)
 
 ;; PROCEDURES
 (: julia (-> Float-Complex Float-Complex Natural))
