@@ -13,7 +13,7 @@
 (define (julia z c)
   (: iter (-> Float-Complex Natural Natural))
   (define (iter zn count)
-    (cond [(> (magnitude zn) 2) count]
+    (cond [(> (magnitude zn) 2.0) count]
           [(> count DEPTH) DEPTH]
           [else (iter (+ (sqr zn) c) (add1 count))]))
   (iter z 0))
