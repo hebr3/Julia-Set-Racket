@@ -3,7 +3,7 @@
          images/flomap)
 
 ;; CONSTANTS
-(define WIDTH 400)
+(define WIDTH 1000)
 (define HEIGHT WIDTH)
 (define DEPTH 64)
 (define SCALE (/ WIDTH))
@@ -18,11 +18,13 @@
           [else (iter (+ (sqr zn) c) (add1 count))]))
   (iter z 0))
 
-(: julia-vector (-> Integer Integer Float-Complex (Vector Real Real Real Real)))
+(: julia-vector (-> Integer Integer Float-Complex
+                    (Vector Real Real Real Real)))
 (define (julia-vector x y z)
-  (let* ([r (fl (- (* 3 SCALE x) 1.5))]
-         [c (fl (- (* 3 SCALE y) 1.5))]
-         [j (julia (make-flrectangular r c) z)])
+  (: scale (-> Integer Float))
+  (define (scale n)
+    (- (* 3.0 SCALE (fl n)) 1.5))
+  (let ([j (julia (make-flrectangular (- (scale x)) (scale y)) z)])
     (vector (if (= j DEPTH) 1.0 (fl (- 1 (/ j DEPTH))))
             (if (= j DEPTH) 0.0 (fl (/ j DEPTH)))
             0.0
